@@ -40,7 +40,12 @@ next(filehandle, None) #for excluding header row
 for eachrow in filehandle:
     previous=int(eachrow[1])
     average_change=int(eachrow[1])-previous
+
+#print
 print("Average Change: $" + str(average_change))
-print("Greatest Increase in Profits: " + str(average_change))
-print("Dreatest Decrease in Profits: " + str(average_change))
+print("Greatest Increase in Profits: " + "month " + str(greatest_increase))
+print("Dreatest Decrease in Profits: " + "month " + str(greatest_decrease))
+
+
+
 #export the text file with the results
