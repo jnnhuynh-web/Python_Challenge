@@ -16,6 +16,7 @@ file=open('budget_data.csv', newline='')
 
 filehandle = csv.reader(file, delimiter=',')
 
+#PART 1
 #total months and net total amount of "Profit/Losses" 
 total_month = 0
 total_sum = 0
@@ -23,6 +24,7 @@ next(filehandle, None) #for excluding header row
 for eachrow in filehandle:
     total_month += 1
     total_sum += int(eachrow[1])
+
 #print summary header
 print("Financial Analysis")
 print("----------------------------")
@@ -30,22 +32,33 @@ print("----------------------------")
 print("Total Months: " + str(total_month))
 print("Total: $" + str(total_sum))
 
-#Average Change: $-2315.12
-#Greatest Increase in Profits: Feb-2012 ($1926159)
-#Greatest Decrease in Profits
-average_change = 0
-greatest_increase = 0
-greatest_decrease = 0
-next(filehandle, None) #for excluding header row
-for eachrow in filehandle:
-    previous=int(eachrow[1])
-    average_change=int(eachrow[1])-previous
+#PART 2
+#variables for calculating change
+revenue = []
+date = []
+rev_change = []
 
-#print
-print("Average Change: $" + str(average_change))
-print("Greatest Increase in Profits: " + "month " + str(greatest_increase))
-print("Dreatest Decrease in Profits: " + "month " + str(greatest_decrease))
+#loop through the file for list of revenue per month
+for row in filehandle:
+    revenue.append(int(row[1]))
 
+#loop through the file for change
+for i in range(1,len(revenue)):
+    rev_change.append(revenue[i-1] - revenue[i])
+    #average change
+    avg_rev_change = sum(rev_change)/len(rev_change)
+    #max and min change
+    max_rev_change = max(rev_change)
+    min_rev_change = min(rev_change)
+    #date of max and min change
+    max_rev_change_date = str(date[rev_change.index(max(rev_change))])
+    min_rev_change_date = str(date[rev_change.index(min(rev_change))])
 
+#print the average change, the max and min change
+print("Average Revenue Change: $" + str(avg_rev_change))
+print("Greatest Increase in Revenue:" + max_rev_change_date +"($" + max_rev_change,")")
+print("Greatest Decrease in Revenue:" + min_rev_change_date +"($" + min_rev_change,")")
 
 #export the text file with the results
+
+
