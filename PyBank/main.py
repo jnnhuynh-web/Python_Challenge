@@ -41,9 +41,10 @@ rev_change = []
 #loop through the file for list of revenue per month
 for row in filehandle:
     revenue.append(int(row[1]))
+    date.append(row[0])
 
 #loop through the file for change
-for i in range(1,len(revenue)):
+for i in range(len(revenue)):
     rev_change.append(revenue[i-1] - revenue[i])
     #average change
     avg_rev_change = sum(rev_change)/len(rev_change)
@@ -54,11 +55,17 @@ for i in range(1,len(revenue)):
     max_rev_change_date = str(date[rev_change.index(max(rev_change))])
     min_rev_change_date = str(date[rev_change.index(min(rev_change))])
 
+
 #print the average change, the max and min change
 print("Average Revenue Change: $" + str(avg_rev_change))
 print("Greatest Increase in Revenue:" + max_rev_change_date +"($" + max_rev_change,")")
 print("Greatest Decrease in Revenue:" + min_rev_change_date +"($" + min_rev_change,")")
 
 #export the text file with the results
-
-
+csvwriter = csv.writer(csvfile, delimiter=',')
+# Write the first row (column headers)
+output_path = os.path.join("results.csv")
+# Open the file using "write" mode. Specify the variable to hold the contents
+with open(output_path, 'w', newline='') as csvfile:
+    csvwriter.writerow(["Total Votes:" + ])
+writeFile.close()
