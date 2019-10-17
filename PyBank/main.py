@@ -35,7 +35,7 @@ with open(csvpath) as file:
     revenue = []
     #loop through each row for the revenue
     for row in filehandle:
-        revenue.append(float(row[1]))
+        revenue.append(row[1])
     
     #list the dates
     date = []
@@ -46,16 +46,24 @@ with open(csvpath) as file:
     #list for storing the change
     rev_change = []
     #loop through the lists above for change
+    print(revenue)
     for i in range(len(revenue)):
         rev_change.append(revenue[i-1] - revenue[i])
+
+    print(rev_change)
+    sum_of_rev = sum(rev_change)
+    print(sum_of_rev)
+    len_of_rev = len(rev_change)
+    print(len_of_rev)
         #average change = total revenue change / the number(length) of revenue changes
-        avg_rev_change = sum(rev_change)/len(rev_change)
+    #avg_rev_change = sum_of_rev/len_of_rev
+    #print(avg_rev_change)
         #max and min change
-        max_rev_change = max(rev_change)
-        min_rev_change = min(rev_change)
+    max_rev_change = max(rev_change)
+    min_rev_change = min(rev_change)
         #date of max and min change
-        max_rev_change_date = str(date[rev_change.index(max(rev_change))])
-        min_rev_change_date = str(date[rev_change.index(min(rev_change))])
+    max_rev_change_date = str(date[rev_change.index(max(rev_change))])
+    min_rev_change_date = str(date[rev_change.index(min(rev_change))])
 
     #print the average change, the max and min change
     print("Average Revenue Change: $" + str(avg_rev_change))
