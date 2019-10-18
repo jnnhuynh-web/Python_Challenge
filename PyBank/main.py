@@ -31,44 +31,27 @@ with open(csvpath) as file:
     print("Total: $" + str(total_sum))
 
     #PART 2
-    #list the revenue
+    #list the revenue, dates, and list for revenue storage
     revenue = []
-    #loop through each row for the revenue
+    date = []
+    rev_change = []
+    #loop through each rows
     for row in filehandle:
         revenue.append(row[1])
-    
-    #list the dates
-    date = []
-    #loop through each row for the date
-    for row in filehandle:
         date.append(row[0])
+        rev_change.append(revenue[row-1] - revenue[row])
 
-    #list for storing the change
-    rev_change = []
-    #loop through the lists above for change
-    print(revenue)
-    for i in range(len(revenue)):
-        rev_change.append(revenue[i-1] - revenue[i])
+#max and min change
+max_rev_change = max(rev_change)
+min_rev_change = min(rev_change)
+#date of max and min change
+max_rev_change_date = str(date[rev_change.index(max(rev_change))])
+min_rev_change_date = str(date[rev_change.index(min(rev_change))])
 
-    print(rev_change)
-    sum_of_rev = sum(rev_change)
-    print(sum_of_rev)
-    len_of_rev = len(rev_change)
-    print(len_of_rev)
-        #average change = total revenue change / the number(length) of revenue changes
-    #avg_rev_change = sum_of_rev/len_of_rev
-    #print(avg_rev_change)
-        #max and min change
-    max_rev_change = max(rev_change)
-    min_rev_change = min(rev_change)
-        #date of max and min change
-    max_rev_change_date = str(date[rev_change.index(max(rev_change))])
-    min_rev_change_date = str(date[rev_change.index(min(rev_change))])
-
-    #print the average change, the max and min change
-    print("Average Revenue Change: $" + str(avg_rev_change))
-    print("Greatest Increase in Revenue:" + max_rev_change_date +"($" + max_rev_change,")")
-    print("Greatest Decrease in Revenue:" + min_rev_change_date +"($" + min_rev_change,")")
+#print the average change, the max and min change
+print("Average Revenue Change: $" + str(avg_rev_change))
+print("Greatest Increase in Revenue:" + max_rev_change_date +"($" + max_rev_change,")")
+print("Greatest Decrease in Revenue:" + min_rev_change_date +"($" + min_rev_change,")")
 
 #export the text file with the results
 output_path = os.path.join("results.csv")
