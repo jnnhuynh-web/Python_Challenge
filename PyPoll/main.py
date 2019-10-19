@@ -44,12 +44,11 @@ print("----------------------------")
 #percentage = (total votes for each candiate / total) *100
 #total number of votes for each candidate
 for candidate in Candidates:
-    Votes += Candidates[candidate]
     #formula for percent of votes for each candidate
     percent_votes = (Candidates[candidate])/(total_votes) * 100
 
     #print the percentages and votes for every candidate
-    print(f"{candidate}: {int(round(percent_votes))}% {Votes}")
+    print(f"{candidate}: {int(round(percent_votes))}% {Candidates[candidate]}")
     
     #If statement to determine the winner
     #"if the candidate in the dictionary of candidates has that most votes, then..."
@@ -74,9 +73,8 @@ with open(output_path, 'w', newline='') as csvfile:
     csvwriter.writerow(["Total Votes: " + str(total_votes)])
     csvwriter.writerow(['----------------------------'])
     for candidate in Candidates:
-        Votes += Candidates[candidate]
         percent_votes = (Candidates[candidate])/(total_votes) * 100
-        csvwriter.writerow([f"{candidate}: {int(percent_votes)}% {Votes}"])
+        csvwriter.writerow([f"{candidate}: {int(percent_votes)}% {Candidates[candidate]}"])
     csvwriter.writerow(['----------------------------'])
     csvwriter.writerow([f"Winner: {Most_Voted}"])
     csvwriter.writerow(['----------------------------'])
