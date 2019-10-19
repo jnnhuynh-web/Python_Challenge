@@ -49,7 +49,7 @@ for candidate in Candidates:
     percent_votes = (Candidates[candidate])/(total_votes) * 100
 
     #print the percentages and votes for every candidate
-    print(f"{candidate}: {int(percent_votes)}% {Votes}")
+    print(f"{candidate}: {int(round(percent_votes))}% {Votes}")
     
     #If statement to determine the winner
     #"if the candidate in the dictionary of candidates has that most votes, then..."
@@ -63,7 +63,7 @@ print(f"Winner: {Most_Voted}")
 print("-------------------------------")
 
 #export a text file for the results
-output_path = os.path.join("results.csv")
+output_path = os.path.join("results.txt")
 #open the file using "write" mode. Specify the variable to hold the contents
 with open(output_path, 'w', newline='') as csvfile:
     # Initialize csv.writer
